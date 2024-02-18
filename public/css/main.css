@@ -385,37 +385,37 @@ main {
 
 /* ------------------------------------ Theme0 --------------------------------------- */
 
-.active-theme,
-.active-theme input,
-.active-theme .segment {
+.active-theme--0,
+.active-theme--0 input,
+.active-theme--0 .segment {
     background-color: var(--light);
 }
 
-.active-theme *::selection {
+.active-theme--0 *::selection {
     /* theme switcher */
     background-color: var(--main);
 }
 
-.active-theme .shadow--active,
-.active-theme .shadow:hover,
-.active-theme input:focus {
+.active-theme--0 .shadow--active,
+.active-theme--0 .shadow:hover,
+.active-theme--0 input:focus {
     /* theme switcher */
     outline-color: var(--main);
 }
 
-.active-theme .shadow--active button,
-.active-theme button:hover {
+.active-theme--0 .shadow--active button,
+.active-theme--0 button:hover {
     /* theme switcher */
     color: var(--main);
 }
 
-.active-theme svg,
-.active-theme .logo:hover svg {
+.active-theme--0 svg,
+.active-theme--0 .logo:hover svg {
     /* theme switcher */
     fill: var(--main);
 }
 
-.active-theme main {
+.active-theme--0 main {
     /* theme switcher: 15% color value change */
 	background: linear-gradient(-45deg, #e3e9f4, #dfe5f1, #7775f534);
 	background-size: 300% 300%;
