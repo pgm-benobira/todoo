@@ -29,17 +29,14 @@
 ════════════════════════════════════════ GENERAL ════════════════════════════════════════
 ══════════════════════════════════════════════════════════════════════════════════════ */
 
-*::selection {
-    /* theme switcher */
-    background-color: var(--main);
-    color: var(--light);
-}
-
 body {
     font-family: 'Poppins';
-    background-color: var(--light);
     color: var(--dark);
     overflow-x: hidden;
+}
+
+body *::selection {
+    color: var(--light);
 }
 
 .shadow {
@@ -62,25 +59,16 @@ body {
 
 .shadow--active {
     box-shadow: inset 4px 4px 8px #b8b9be, inset -4px -4px 8px #fff!important;
-    /* theme switcher */
-    outline-color: var(--main);
-}
-
-.shadow--active button {
-    /* theme switcher */
-    color: var(--main);
 }
 
 .shadow:hover {
     box-shadow: inset 4px 4px 8px #b8b9be, inset -4px -4px 8px #fff!important;
-    /* theme switcher */
-    outline-color: var(--main);
     transition: 0.4s ease;
     cursor: pointer;
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     line-height: 2.9rem;
     font-weight: normal;
     padding-bottom: 2.4rem;
@@ -114,11 +102,6 @@ a {
     text-decoration: none;
 }
 
-svg {
-    /* theme switcher */
-    fill: var(--main);
-}
-
 button {
     background: none;
     border: none;
@@ -129,17 +112,11 @@ button {
 
 input {
     width: 100%;
-    height: 5rem;
+    height: 6rem;
     border: none;
-    border-radius: 10px;
-    background-color: var(--light);
+    border-radius: 14px;
     box-shadow: inset 4px 4px 10px #b8b9be, inset -4px -4px 10px #fff!important;
     padding-left: 1.4rem;
-}
-
-input:focus {
-    /* theme switcher */
-    outline-color: var(--main);
 }
 
 button:hover {
@@ -180,8 +157,6 @@ header {
 }
 
 .logo:hover svg {
-    /* theme switcher */
-    fill: var(--main);
     transition: 0.2s ease;
 }
 
@@ -255,12 +230,13 @@ aside {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0.75rem;
 }
 
 .theme:after {
     content: "";
     display: block;
-    width: 70%;
+    width: 100%;
     height: 2.6rem;
     border-radius: 8px;
     background-color: var(--main);
@@ -284,25 +260,9 @@ aside {
 ═════════════════════════════════════════ MAIN ══════════════════════════════════════════
 ══════════════════════════════════════════════════════════════════════════════════════ */
 
-/* theme switcher: 10% color value change */
 main {
-	background: linear-gradient(-45deg, #e3e9f4, #dfe5f1, #7775f51f);
-	background-size: 400% 400%;
-	animation: gradient 12s ease infinite;
     width: 100%;
     box-shadow: inset 6px 6px 10px 0px rgba(0,0,0,0.15);
-}
-
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
 }
 
 .main__inner {
@@ -317,7 +277,6 @@ main {
     border-radius: 20px;
     box-shadow: 4px 4px 10px #b8b9be,-4px -4px 10px #fff!important;
     outline: 1px solid hsla(218, 15%, 58%, 0.1);
-    background-color: var(--light);
 }
 
 /* ------------------------------------ Add task ------------------------------------- */
@@ -334,11 +293,11 @@ main {
 }
 
 .round-button {
-    max-width: 2.5rem;
+    max-width: 3.5rem;
     width: 100%;
-    max-height: 2.5rem;
+    max-height: 3.5rem;
     height: 100%;
-    padding: 0.6rem;
+    padding: 1rem;
     border-radius: 10px;
 }
 
@@ -360,7 +319,6 @@ main {
     border-radius: 10px;
     box-shadow: 4px 4px 10px #b8b9be,-4px -4px 10px #fff!important;
     outline: 1px solid hsla(218, 15%, 58%, 0.1);
-    background-color: var(--light);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -420,3 +378,181 @@ main {
 }
 
 /* ----------------------------- 📱 main media queries ------------------------------- */
+
+/* ══════════════════════════════════════════════════════════════════════════════════════
+════════════════════════════════════════ THEMES ═════════════════════════════════════════
+══════════════════════════════════════════════════════════════════════════════════════ */
+
+/* ------------------------------------ Theme0 --------------------------------------- */
+
+.active-theme,
+.active-theme input,
+.active-theme .segment {
+    background-color: var(--light);
+}
+
+.active-theme *::selection {
+    /* theme switcher */
+    background-color: var(--main);
+}
+
+.active-theme .shadow--active,
+.active-theme .shadow:hover,
+.active-theme input:focus {
+    /* theme switcher */
+    outline-color: var(--main);
+}
+
+.active-theme .shadow--active button,
+.active-theme button:hover {
+    /* theme switcher */
+    color: var(--main);
+}
+
+.active-theme svg,
+.active-theme .logo:hover svg {
+    /* theme switcher */
+    fill: var(--main);
+}
+
+.active-theme main {
+    /* theme switcher: 15% color value change */
+	background: linear-gradient(-45deg, #e3e9f4, #dfe5f1, #7775f534);
+	background-size: 300% 300%;
+	animation: gradient 12s ease infinite;
+}
+
+/* ------------------------------------ Theme1 --------------------------------------- */
+
+.active-theme--1,
+.active-theme--1 input,
+.active-theme--1 .segment {
+    background-color: #f0fbfc;
+}
+
+.active-theme--1 *::selection {
+    /* theme switcher */
+    background-color: var(--theme1);
+}
+
+.active-theme--1 .shadow--active,
+.active-theme--1 .shadow:hover,
+.active-theme--1 input:focus {
+    /* theme switcher */
+    outline-color: var(--theme1);
+}
+
+.active-theme--1 .shadow--active button,
+.active-theme--1 button:hover {
+    /* theme switcher */
+    color: var(--theme1);
+}
+
+.active-theme--1 svg,
+.active-theme--1 .logo:hover svg {
+    /* theme switcher */
+    fill: var(--theme1);
+}
+
+.active-theme--1 main {
+    /* theme switcher: 15% color value change */
+	background: linear-gradient(-45deg, #ecf6fa, #e8f2f6, #46bbe23a);
+	background-size: 300% 300%;
+	animation: gradient 12s ease infinite;
+}
+
+/* ------------------------------------ Theme2 --------------------------------------- */
+
+.active-theme--2,
+.active-theme--2 input,
+.active-theme--2 .segment {
+    background-color: #f0fcf1;
+}
+
+.active-theme--2 *::selection {
+    /* theme switcher */
+    background-color: var(--theme2);
+}
+
+.active-theme--2 .shadow--active,
+.active-theme--2 .shadow:hover,
+.active-theme--2 input:focus {
+    /* theme switcher */
+    outline-color: var(--theme2);
+}
+
+.active-theme--2 .shadow--active button,
+.active-theme--2 button:hover {
+    /* theme switcher */
+    color: var(--theme2);
+}
+
+.active-theme--2 svg,
+.active-theme--2 .logo:hover svg {
+    /* theme switcher */
+    fill: var(--theme2);
+}
+
+.active-theme--2 main {
+    /* theme switcher: 15% color value change */
+	background: linear-gradient(-45deg, #e6f6e8, #e3f3e4, #6fe2a12e);
+	background-size: 300% 300%;
+	animation: gradient 12s ease infinite;
+}
+
+/* ------------------------------------ Theme3 --------------------------------------- */
+
+.active-theme--3,
+.active-theme--3 input,
+.active-theme--3 .segment {
+    background-color: #fffbf3;
+}
+
+.active-theme--3 *::selection {
+    /* theme switcher */
+    background-color: var(--theme3);
+}
+
+.active-theme--3 .shadow--active,
+.active-theme--3 .shadow:hover,
+.active-theme--3 input:focus {
+    /* theme switcher */
+    outline-color: var(--theme3);
+}
+
+.active-theme--3 .shadow--active button,
+.active-theme--3 button:hover {
+    /* theme switcher */
+    color: var(--theme3);
+}
+
+.active-theme--3 svg,
+.active-theme--3 .logo:hover svg {
+    /* theme switcher */
+    fill: var(--theme3);
+}
+
+.active-theme--3 main {
+    /* theme switcher: 15% color value change */
+	background: linear-gradient(-45deg, #fbf8ed, #fbf7ee, #f4d0762e);
+	background-size: 300% 300%;
+	animation: gradient 12s ease infinite;
+}
+
+/* ------------------------------------- Extra --------------------------------------- */
+
+.logo svg {
+    fill: var(--dark);
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
