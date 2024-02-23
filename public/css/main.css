@@ -212,6 +212,14 @@ aside {
     border-radius: 10px;
 }
 
+.category a {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    text-align: center;
+}
+
 /* -------------------------------------- Theme -------------------------------------- */
 
 .theme-switcher {
@@ -404,7 +412,9 @@ main {
 }
 
 .active-theme--0 .shadow--active button,
-.active-theme--0 button:hover {
+.active-theme--0 button:hover,
+.active-theme--0 .category:hover a,
+.active-theme--0 .shadow--active a {
     /* theme switcher */
     color: var(--main);
 }
@@ -443,7 +453,9 @@ main {
 }
 
 .active-theme--1 .shadow--active button,
-.active-theme--1 button:hover {
+.active-theme--1 button:hover,
+.active-theme--1 .category:hover a,
+.active-theme--1 .shadow--active a {
     /* theme switcher */
     color: var(--theme1);
 }
@@ -482,7 +494,9 @@ main {
 }
 
 .active-theme--2 .shadow--active button,
-.active-theme--2 button:hover {
+.active-theme--2 button:hover,
+.active-theme--2 .category:hover a,
+.active-theme--2 .shadow--active a {
     /* theme switcher */
     color: var(--theme2);
 }
@@ -521,7 +535,9 @@ main {
 }
 
 .active-theme--3 .shadow--active button,
-.active-theme--3 button:hover {
+.active-theme--3 button:hover,
+.active-theme--3 .category:hover a,
+.active-theme--3 .shadow--active a {
     /* theme switcher */
     color: var(--theme3);
 }
