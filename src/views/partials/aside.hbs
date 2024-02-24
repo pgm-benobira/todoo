@@ -1,0 +1,26 @@
+{{!-- Sidebar --}}
+<aside>
+    <article class="aside__inner">
+        <div>
+            <h2>Categories</h2>
+            <ul class="categories">
+                <form class="add-category__form" id="addCategory">
+                    <input class="add-category__bar" type="text" id="addCategory" name="category" placeholder="Add a category" maxlength="20">
+                </form>
+                <li class="category shadow shadow--btn shadow--active"><a href="/">Default</a></li>
+                <li class="category shadow shadow--btn"><a href="/household">Household</a></li>
+                <li class="category shadow shadow--btn"><a href="/school">School</a></li>
+                <li class="category shadow shadow--btn"><a href="/work">Work</a></li>
+            </ul>
+        </div>
+        <div>
+            <h2>Theme</h2>
+            <div class="theme-switcher">
+                <div id="btnTheme0" class="theme theme--0 shadow shadow--active"></div>
+                <div id="btnTheme1" class="theme theme--1 shadow"></div>
+                <div id="btnTheme2" class="theme theme--2 shadow"></div>
+                <div id="btnTheme3" class="theme theme--3 shadow"></div>
+            </div>
+        </div>
+    </article>
+</aside>

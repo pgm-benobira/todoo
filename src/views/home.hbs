@@ -1,0 +1,30 @@
+{{!-- Home --}}
+{{> header this}}
+<div class="wrapper">
+    {{> aside this}}
+    <main>
+        <article class="main__inner">
+            {{> add-task this }}
+            <section class="segment todos">
+                <h1>To do:</h1>
+                <ul class="tasks todo">
+                    {{#each todos}}
+                        {{#unless isDone}}
+                            {{> todo this}}
+                        {{/unless}}
+                    {{/each}}
+                </ul>
+            </section>
+            <section class="segment done-todos">
+                <h1>Things you've done!</h1>
+                <ul class="tasks todo">
+                    {{#each todos}}
+                        {{#if isDone}}
+                            {{> done-todo this}}
+                        {{/if}}
+                    {{/each}}
+                </ul>
+            </section>
+        </article>
+    </main>
+</div>
