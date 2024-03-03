@@ -7,10 +7,11 @@
                 <form class="add-category__form" id="addCategory">
                     <input class="add-category__bar" type="text" id="addCategory" name="category" placeholder="Add a category" maxlength="20">
                 </form>
-                <li class="category shadow shadow--btn shadow--active"><a href="/">Default</a></li>
-                <li class="category shadow shadow--btn"><a href="/household">Household</a></li>
-                <li class="category shadow shadow--btn"><a href="/school">School</a></li>
-                <li class="category shadow shadow--btn"><a href="/work">Work</a></li>
+                {{#each categories}}
+                    {{#unless isDeleted}}
+                        {{> category this}}
+                    {{/unless}}
+                {{/each}}
             </ul>
         </div>
         <div>

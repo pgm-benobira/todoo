@@ -57,9 +57,9 @@ export default [
     },
     {
         id:9,
-        title: "Watching a movie",
+        title: "Going to the gym",
         category: "default",
-        isDone: true,
+        isDone: false,
         isDeleted: false
     }
 ]

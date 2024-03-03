@@ -1,0 +1,10 @@
+{{!-- Strcture of the category item --}}
+{{#if isActive}}
+<li class="category shadow shadow--btn shadow--active">
+    <a href="{{ link }}">{{ name }}</a>
+</li>
+{{else}}
+<li class="category shadow shadow--btn">
+    <a href="{{ link }}">{{ name }}</a>
+</li>
+{{/if}}
