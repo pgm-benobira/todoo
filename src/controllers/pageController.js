@@ -2,8 +2,6 @@
  * This is the todo controller that will handle the incoming requests
  */
 
-// import todosData from '../data/todos.js';
-// import categoriesData from '../data/categories.js';
 import Todo from '../models/todo.js';
 import Category from '../models/category.js';
 
