@@ -8,7 +8,9 @@ import Todo from "../../models/todo.js";
  */
 export const getTodo = async (req, res, next) => {
     const { id } = req.params;
-    const todo = await Todo.query().findById(id);
+    const todo = await Todo.query()
+        .findById(id)
+        .withGraphFetched('category');
     if (!todo) {
         res.status(404).json({ message: "Todo not found" });
     }

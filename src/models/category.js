@@ -4,6 +4,9 @@ import { Model } from "objection";
 // instantiate the model
 Model.knex(knex);
 
+// import related models
+import Todo from "./todo.js";
+
 // define the Category model
 class Category extends Model {
 static get tableName() {
@@ -26,6 +29,19 @@ static get jsonSchema() {
         isActive: { type: "boolean"}
     },
     };
+}
+
+static get relationMappings() {
+    return {
+        todos: {
+            relation: Model.HasManyRelation,
+            modelClass: Todo,
+            join: {
+                from: "categories.id",
+                to: "todos.category_id",
+            },
+        },
+    }
 }
 }
 
