@@ -9,7 +9,9 @@
                 </form>
                 {{#each categories}}
                     {{#unless isDeleted}}
-                        {{> category this}}
+                        <li class="category shadow shadow--btn" data-slug="{{ link }}">
+                            <a href="{{ link }}">{{ name }}</a>
+                        </li>
                     {{/unless}}
                 {{/each}}
             </ul>
