@@ -20,11 +20,11 @@ static get idColumn() {
 static get jsonSchema() {
     return {
     type: "object",
-    required: ["title", "category", "isDone"],
+    required: ["title", "category_id"],
     properties: {
         id: { type: "integer" },
+        category_id: { type: "integer" },
         title: { type: "string", minLength: 1, maxLength: 255 },
-        category: { type: "string", minLength: 1, maxLength: 255 },
         isDone: { type: "boolean" },
         isDeleted: { type: "boolean"}
     },
