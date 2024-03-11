@@ -7,7 +7,7 @@
             {{> add-task this }}
             <section class="segment todos">
                 <h1>To do:</h1>
-                <ul class="tasks todo">
+                <ul class="tasks">
                     {{#each todos}}
                         {{#unless isDone}}
                             {{> todo this}}
@@ -17,7 +17,7 @@
             </section>
             <section class="segment done-todos">
                 <h1>Things you've done!</h1>
-                <ul class="tasks todo">
+                <ul class="tasks">
                     {{#each todos}}
                         {{#if isDone}}
                             {{> done-todo this}}

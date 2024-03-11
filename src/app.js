@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import bodyParser from "body-parser";
 import { create } from "express-handlebars";
-import { home, categoryPage } from "./controllers/pageController.js";
+import { home, categoryPage, handlePost } from "./controllers/pageController.js";
 import { getTodo, getTodos, createTodo, updateTodo, deleteTodo } from "./controllers/api/todosController.js";
 import { getCategory, getCategories } from "./controllers/api/categoriesController.js";
 
@@ -33,6 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define the route for the home page
 app.get('/', home);
+app.post('/', handlePost);
 app.get('/:slug', categoryPage);
 
 // Define the routes for the todos API

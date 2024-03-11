@@ -10,11 +10,9 @@ const categories = document.querySelectorAll('.category');
 
 function setActiveCategory() {
     const slug = window.location.pathname.split('/').pop();
-    console.log(`This is the slug: ${slug}`);
 
     categories.forEach(category => {
         const categorySlug = category.getAttribute('data-slug');
-        console.log(`This is the category slug: ${categorySlug}`);
 
         if (categorySlug === slug) {
             category.classList.add('shadow--active');

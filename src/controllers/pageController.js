@@ -30,3 +30,7 @@ export const categoryPage = async (req, res) => {
         categories
     });
 }
+
+export const handlePost = async (req, res) => {
+    res.send(req.body);
+}

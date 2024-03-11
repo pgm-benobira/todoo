@@ -1,18 +1,22 @@
 {{!-- Strcture of the todo item --}}
 <li class="task">
-    <p class="task__title">{{ title }}</p>
-    <div class="actions">
-        <div class="action done">
-            <p>Done</p>
-            <button class="round-button shadow shadow--btn-inset"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 800 800" viewBox="0 0 800 800"><path d="M731.4 152.4a90.2 90.2 0 0 0-64.9-27.2c-24.3 0-47.2 9.4-64.4 26.5L297.3 454.3l-99.6-98.9a90.95 90.95 0 0 0-64.4-26.5c-24.6 0-47.7 9.6-64.9 27.1a91.04 91.04 0 0 0-26.5 64.8c.1 24.5 9.7 47.4 27.1 64.6l164.1 162.9a91.22 91.22 0 0 0 64.4 26.6c24.3 0 47.2-9.4 64.4-26.5l368.9-366.6c17.4-17.2 27-40.1 27.1-64.6.1-24.4-9.3-47.4-26.5-64.8z"/></svg></button>
+    <form class="task__form" action="/" method="post">
+        <p class="task__title">
+            <input class="task__bar" type="text" name="task" value="{{ title }}" maxlength="30">
+        </p>
+        <div class="actions">
+            <div class="action">
+                <p>Done</p>
+                <button name="action" value="done" class="round-button shadow shadow--btn-inset"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 800 800" viewBox="0 0 800 800"><path d="M731.4 152.4a90.2 90.2 0 0 0-64.9-27.2c-24.3 0-47.2 9.4-64.4 26.5L297.3 454.3l-99.6-98.9a90.95 90.95 0 0 0-64.4-26.5c-24.6 0-47.7 9.6-64.9 27.1a91.04 91.04 0 0 0-26.5 64.8c.1 24.5 9.7 47.4 27.1 64.6l164.1 162.9a91.22 91.22 0 0 0 64.4 26.6c24.3 0 47.2-9.4 64.4-26.5l368.9-366.6c17.4-17.2 27-40.1 27.1-64.6.1-24.4-9.3-47.4-26.5-64.8z"/></svg></button>
+            </div>
+            <div class="action">
+                <p>Edit</p>
+                <button name="action" value="edit" class="round-button shadow shadow--btn-inset"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" id="Layer_1" x="0" y="0" style="enable-background:new 0 0 800 800" version="1.1" viewBox="0 0 800 800"><path d="M400 700c0-18.4 14.9-33.3 33.3-33.3H700c18.4 0 33.3 14.9 33.3 33.3s-14.9 33.3-33.3 33.3H433.3c-18.4 0-33.3-14.9-33.3-33.3zM692.5 270c53.7-53.9 51.4-124.6 11.3-167.9C684.3 81 656.5 67.5 625 66.7c-31.6-.7-64.4 11.3-94.6 36.6-.8.6-1.5 1.3-2.2 2l-432.3 434a99.73 99.73 0 0 0-29.1 70.6v56.5c0 36.7 29.7 66.9 66.8 66.9h56c26.6 0 52.1-10.6 70.9-29.4l432-433.9zm-118.9-76.9a33.32 33.32 0 0 0-47.1 47.1l33.3 33.3a33.32 33.32 0 0 0 47.1-47.1l-33.3-33.3z" class="st0"/></svg></button>
+            </div>
+            <div class="action">
+                <p>Delete</p>
+                <button name="action" value="delete" class="round-button shadow shadow--btn-inset"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 800 800" viewBox="0 0 800 800"><path d="m191.8 676.1-58.5-409.4h533.3l-58.5 409.4a66.66 66.66 0 0 1-66 57.2H257.8c-33.1 0-61.3-24.4-66-57.2zM700 133.3H533.3V100c0-18.4-14.9-33.3-33.3-33.3H300c-18.4 0-33.3 14.9-33.3 33.3v33.3H100c-18.4 0-33.3 14.9-33.3 33.3S81.6 200 100 200h600c18.4 0 33.3-14.9 33.3-33.3s-14.9-33.4-33.3-33.4z"/></svg></button>
+            </div>
         </div>
-        <div class="action edit">
-            <p>Edit</p>
-            <button class="round-button shadow shadow--btn-inset"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" id="Layer_1" x="0" y="0" style="enable-background:new 0 0 800 800" version="1.1" viewBox="0 0 800 800"><path d="M400 700c0-18.4 14.9-33.3 33.3-33.3H700c18.4 0 33.3 14.9 33.3 33.3s-14.9 33.3-33.3 33.3H433.3c-18.4 0-33.3-14.9-33.3-33.3zM692.5 270c53.7-53.9 51.4-124.6 11.3-167.9C684.3 81 656.5 67.5 625 66.7c-31.6-.7-64.4 11.3-94.6 36.6-.8.6-1.5 1.3-2.2 2l-432.3 434a99.73 99.73 0 0 0-29.1 70.6v56.5c0 36.7 29.7 66.9 66.8 66.9h56c26.6 0 52.1-10.6 70.9-29.4l432-433.9zm-118.9-76.9a33.32 33.32 0 0 0-47.1 47.1l33.3 33.3a33.32 33.32 0 0 0 47.1-47.1l-33.3-33.3z" class="st0"/></svg></button>
-        </div>
-        <div class="action delete">
-            <p>Delete</p>
-            <button class="round-button shadow shadow--btn-inset"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 800 800" viewBox="0 0 800 800"><path d="m191.8 676.1-58.5-409.4h533.3l-58.5 409.4a66.66 66.66 0 0 1-66 57.2H257.8c-33.1 0-61.3-24.4-66-57.2zM700 133.3H533.3V100c0-18.4-14.9-33.3-33.3-33.3H300c-18.4 0-33.3 14.9-33.3 33.3v33.3H100c-18.4 0-33.3 14.9-33.3 33.3S81.6 200 100 200h600c18.4 0 33.3-14.9 33.3-33.3s-14.9-33.4-33.3-33.4z"/></svg></button>
-        </div>
-    </div>
+    </form>
 </li>
