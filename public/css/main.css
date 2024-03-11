@@ -337,7 +337,6 @@ main {
     border-radius: 10px;
     box-shadow: 4px 4px 10px #b8b9be,-4px -4px 10px #fff!important;
     outline: 1px solid hsla(218, 15%, 58%, 0.1);
-    /* flex-grow: 1; */
     display: flex;
 }
 
@@ -377,8 +376,6 @@ main {
     text-align: center;
     color: var(--dark);
     border-radius: 10px;
-    box-shadow: none;
-    border: 2px solid hsla(218, 15%, 58%, 0.1);
 }
 
 .task--done .task__title {
