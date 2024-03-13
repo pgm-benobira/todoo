@@ -1,13 +1,14 @@
-{{!-- Strcture of the todo item --}}
+{{!-- Structure of the todo item --}}
 <li class="task">
     <form class="task__form" action="/" method="post">
+    <input type="hidden" name="id" value="{{ id }}">
         <p class="task__title">
-            <input class="task__bar shadow--btn-inset" type="text" name="task" value="{{ title }}" maxlength="30">
+            <input class="task__bar shadow--btn-inset" type="text" name="title" value="{{ title }}" maxlength="30">
         </p>
         <div class="actions">
             <div class="action">
                 <p>Done</p>
-                <button name="action" value="done" class="round-button shadow shadow--btn-inset"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 800 800" viewBox="0 0 800 800"><path d="M731.4 152.4a90.2 90.2 0 0 0-64.9-27.2c-24.3 0-47.2 9.4-64.4 26.5L297.3 454.3l-99.6-98.9a90.95 90.95 0 0 0-64.4-26.5c-24.6 0-47.7 9.6-64.9 27.1a91.04 91.04 0 0 0-26.5 64.8c.1 24.5 9.7 47.4 27.1 64.6l164.1 162.9a91.22 91.22 0 0 0 64.4 26.6c24.3 0 47.2-9.4 64.4-26.5l368.9-366.6c17.4-17.2 27-40.1 27.1-64.6.1-24.4-9.3-47.4-26.5-64.8z"/></svg></button>
+                <button name="action" value="complete" class="round-button shadow shadow--btn-inset"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" style="enable-background:new 0 0 800 800" viewBox="0 0 800 800"><path d="M731.4 152.4a90.2 90.2 0 0 0-64.9-27.2c-24.3 0-47.2 9.4-64.4 26.5L297.3 454.3l-99.6-98.9a90.95 90.95 0 0 0-64.4-26.5c-24.6 0-47.7 9.6-64.9 27.1a91.04 91.04 0 0 0-26.5 64.8c.1 24.5 9.7 47.4 27.1 64.6l164.1 162.9a91.22 91.22 0 0 0 64.4 26.6c24.3 0 47.2-9.4 64.4-26.5l368.9-366.6c17.4-17.2 27-40.1 27.1-64.6.1-24.4-9.3-47.4-26.5-64.8z"/></svg></button>
             </div>
             <div class="action">
                 <p>Edit</p>

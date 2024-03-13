@@ -227,6 +227,20 @@ aside {
     text-align: center;
 }
 
+/* --------------------------------- Delete category --------------------------------- */
+
+.delete-category__form {
+    display: flex;
+    justify-content: center;
+}
+
+.delete-category__form button {
+    color: hsla(209, 20%, 21%, 0.5);
+    padding-top: 2rem;
+    display: inline;
+    width: auto;
+}
+
 /* -------------------------------------- Theme -------------------------------------- */
 
 .theme-switcher {

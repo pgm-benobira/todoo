@@ -38,7 +38,7 @@ export const createTodo = async (req, res, next) => {
 };
 
 /**
- * Update an todo
+ * Update a todo
  *
  */
 export const updateTodo = async (req, res, next) => {
@@ -58,7 +58,7 @@ export const updateTodo = async (req, res, next) => {
 };
 
 /**
- * Delete an todo
+ * Delete a todo
  */
 export const deleteTodo = async (req, res, next) => {
     const { id } = req.params;
