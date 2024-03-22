@@ -127,5 +127,7 @@ export const handlePost = async (req, res, next) => {
         type: 'success'
     };
 
-    next();
+    req.body = {};
+
+    return next();
 };
