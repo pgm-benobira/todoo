@@ -1,5 +1,6 @@
 import Todo from '../models/todo.js';
 import Category from '../models/category.js';
+import { validationResult } from 'express-validator';
 
 // For the todos
 
@@ -18,12 +19,19 @@ const categoryId = async (req) => {
 };
 
 export const create = async (req, res) => {
+    const existingTodo = await Todo.query().where('title', req.body.title).first();
+    if (existingTodo) {
+        return req.flash = {
+            message: 'Task already exists in this category',
+            type: 'error'
+        };
+    }
     const newTodo = await Todo.query().insert({
         title: req.body.title,
         category_id: await categoryId(req),
     });
     console.log(newTodo);
-    res.redirect(req.headers.referer);
+    return res.redirect(req.headers.referer);
 };
 
 export const edit = async (req, res) => {
@@ -31,7 +39,7 @@ export const edit = async (req, res) => {
     const patchedTodo = await Todo.query().patchAndFetchById(todoId, {
         title: req.body.title
     });
-    res.redirect(req.headers.referer);
+    return res.redirect(req.headers.referer);
 };
 
 export const destroy = async (req, res) => {
@@ -40,7 +48,7 @@ export const destroy = async (req, res) => {
     if (!deleted) {
         return res.send('Todo not deleted');
     }
-    res.redirect(req.headers.referer);
+    return res.redirect(req.headers.referer);
 };
 
 export const complete = async (req, res) => {
@@ -50,7 +58,7 @@ export const complete = async (req, res) => {
     const completed = await Todo.query().patchAndFetchById(todoId, {
         isDone: !isDone
     });
-    res.redirect(req.headers.referer);
+    return res.redirect(req.headers.referer);
 };
 
 // For the categories
@@ -61,7 +69,7 @@ export const createCategory = async (req, res) => {
         link: req.body.name.toLowerCase()
     });
     console.log(newCategory);
-    res.redirect(req.headers.referer);
+    return res.redirect(req.headers.referer);
 }
 
 export const destroyCategory = async (req, res) => {
@@ -72,7 +80,7 @@ export const destroyCategory = async (req, res) => {
     if (!deletedCategory) {
         return res.send('Category not deleted');
     }
-    res.redirect('/');
+    return res.redirect('/');
 }
 
 export const handleCategoryPost = async (req, res) => {
@@ -85,7 +93,18 @@ export const handleCategoryPost = async (req, res) => {
     }
 };
 
-export const handlePost = async (req, res) => {
+export const handlePost = async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        req.formErrorFields = {};
+        errors.array().forEach(error => {
+            req.formErrorFields[error.path] = error.msg;
+        });
+
+        // show errors in browser via the current page
+        return next();
+    }
+
     const action = req.body.action;
     if (action == 'create') {
         create(req, res);
@@ -102,4 +121,11 @@ export const handlePost = async (req, res) => {
     if (action == 'createCategory' || action == 'deleteCategory') {
         handleCategoryPost(req, res);
     }
+
+    req.flash = {
+        message: 'Todo created/edited successfully',
+        type: 'success'
+    };
+
+    next();
 };

@@ -6,6 +6,8 @@ dotenv.config();
 import bodyParser from "body-parser";
 import { create } from "express-handlebars";
 
+import TodoValidation from "./middleware/validation/TodoValidation.js";
+
 import { home, categoryPage } from "./controllers/pageController.js";
 import { handlePost } from "./controllers/todoController.js";
 import { getTodo, getTodos, createTodo, updateTodo, deleteTodo } from "./controllers/api/todosController.js";
@@ -38,7 +40,8 @@ app.get('/', home);
 // Define the route for a category page
 app.get('/:slug', categoryPage);
 // Define the route for the todo and category form submission
-app.post('/', handlePost);
+app.post('/', TodoValidation, handlePost, home);
+app.post('/:slug', TodoValidation, handlePost, categoryPage);
 
 // Define the routes for the todos API
 app.get('/api/todos/:id', getTodo);
@@ -53,5 +56,5 @@ app.get('/api/categories', getCategories);
 
 // Start the server
 app.listen(process.env.PORT, () => {
-    console.log(`Example app listening on port ${process.env.PORT}`);
+    console.log(`Example app listening on http://localhost:${process.env.PORT}`);
 });
