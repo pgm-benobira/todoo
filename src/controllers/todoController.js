@@ -19,15 +19,18 @@ const categoryId = async (req) => {
 };
 
 export const create = async (req, res) => {
-    const existingTodo = await Todo.query().where('title', req.body.title).first();
+    const inputTitle = req.body.title;
+    // Check if the todo already exists with the matching category
+    const existingTodo = await Todo.query().where('title', inputTitle).where('category_id', await categoryId(req)).first();
     if (existingTodo) {
-        return req.flash = {
+        req.flash = {
             message: 'Task already exists in this category',
             type: 'error'
         };
+        return res.redirect(req.headers.referer);
     }
     const newTodo = await Todo.query().insert({
-        title: req.body.title,
+        title: inputTitle,
         category_id: await categoryId(req),
     });
     console.log(newTodo);
@@ -61,39 +64,7 @@ export const complete = async (req, res) => {
     return res.redirect(req.headers.referer);
 };
 
-// For the categories
-
-export const createCategory = async (req, res) => {
-    const newCategory = await Category.query().insert({
-        name: req.body.name,
-        link: req.body.name.toLowerCase()
-    });
-    console.log(newCategory);
-    return res.redirect(req.headers.referer);
-}
-
-export const destroyCategory = async (req, res) => {
-    const categoryLink = req.headers.referer.split('/').pop();
-    const categoryUniqueId = await categoryId(req);
-    const deletedTodos = await Todo.query().where('category_id', categoryUniqueId).delete();
-    const deletedCategory = await Category.query().where('link', categoryLink).first().delete();
-    if (!deletedCategory) {
-        return res.send('Category not deleted');
-    }
-    return res.redirect('/');
-}
-
-export const handleCategoryPost = async (req, res) => {
-    const action = req.body.action;
-    if (action == 'createCategory') {
-        createCategory(req, res);
-    }
-    if (action == 'deleteCategory') {
-        destroyCategory(req, res);
-    }
-};
-
-export const handlePost = async (req, res, next) => {
+export const handleTodoPost = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         req.formErrorFields = {};
@@ -108,24 +79,20 @@ export const handlePost = async (req, res, next) => {
     const action = req.body.action;
     if (action == 'create') {
         create(req, res);
+        return;
     } 
     if (action == 'edit') {
         edit(req, res);
+        return;
     }
     if (action == 'delete') {
         destroy(req, res);
+        return;
     }
     if (action == 'complete') {
         complete(req, res);
+        return;
     }
-    if (action == 'createCategory' || action == 'deleteCategory') {
-        handleCategoryPost(req, res);
-    }
-
-    req.flash = {
-        message: 'Todo created/edited successfully',
-        type: 'success'
-    };
 
     req.body = {};
 

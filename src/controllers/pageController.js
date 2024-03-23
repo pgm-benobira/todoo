@@ -7,7 +7,7 @@ import Category from '../models/category.js';
 
 export const home = async (req, res) => {
     const err = req.formErrorFields?.title ? req.formErrorFields.title : '';
-    const value = req.body?.title ? req.body.value : '';
+    const value = req.body?.title ? req.body.title : '';
 
     // Replacing: const todos = await Todo.query().where('category', 'default');
     const todos = await Todo.query()
@@ -29,7 +29,7 @@ export const home = async (req, res) => {
 
 export const categoryPage = async (req, res) => {
     const err = req.formErrorFields?.title ? req.formErrorFields.title : '';
-    const value = req.body?.title ? req.body.value : '';
+    const value = req.body?.title ? req.body.title : '';
 
     const { slug } = req.params;
     const todos = await Todo.query()

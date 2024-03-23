@@ -9,7 +9,8 @@ import { create } from "express-handlebars";
 import TodoValidation from "./middleware/validation/TodoValidation.js";
 
 import { home, categoryPage } from "./controllers/pageController.js";
-import { handlePost } from "./controllers/todoController.js";
+import { handleTodoPost } from "./controllers/todoController.js";
+import { handleCategoryPost } from "./controllers/categoryController.js";
 import { getTodo, getTodos, createTodo, updateTodo, deleteTodo } from "./controllers/api/todosController.js";
 import { getCategory, getCategories } from "./controllers/api/categoriesController.js";
 
@@ -40,8 +41,7 @@ app.get('/', home);
 // Define the route for a category page
 app.get('/:slug', categoryPage);
 // Define the route for the todo and category form submission
-app.post('/', TodoValidation, handlePost, home);
-app.post('/:slug', TodoValidation, handlePost, categoryPage);
+app.post('/', handleCategoryPost, TodoValidation, handleTodoPost, home);
 
 // Define the routes for the todos API
 app.get('/api/todos/:id', getTodo);
