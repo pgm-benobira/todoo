@@ -14,12 +14,9 @@ function setActiveCategory() {
     categories.forEach(category => {
         const categorySlug = category.getAttribute('data-slug');
 
-        if (categorySlug === slug) {
+        if (categorySlug === '/' + slug) {
             category.classList.add('shadow--active');
-        } else if (categorySlug === '/' && slug === '') {
-            category.classList.add('shadow--active'); // For the home page
-        }
-        else {
+        } else {
             category.classList.remove('shadow--active');
         }
     });

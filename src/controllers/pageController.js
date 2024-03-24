@@ -5,20 +5,24 @@
 import Todo from '../models/todo.js';
 import Category from '../models/category.js';
 
-export const home = async (req, res) => {
+export const homePage = (req, res) => {
+    res.render("home");
+};
+
+/**
+ *  This function will render the page with all the todos
+**/
+export const todosPage = async (req, res) => {
     const err = req.formErrorFields?.title ? req.formErrorFields.title : '';
     const value = req.body?.title ? req.body.title : '';
 
-    // Replacing: const todos = await Todo.query().where('category', 'default');
-    const todos = await Todo.query()
-        .join('categories', 'todos.category_id', '=', 'categories.id')
-        .where('categories.link', '/');
+    const todos = await Todo.query();
     const categories = await Category.query();
 
     // Get flash message if available
     const flash = req.flash || "";
 
-    res.render("home", {
+    res.render("todos", {
         todos,
         categories,
         err,
@@ -27,20 +31,23 @@ export const home = async (req, res) => {
     });
 }
 
-export const categoryPage = async (req, res) => {
+/**
+ *  This function will render the page with all the todos in a category
+**/
+export const categoryTodosPage = async (req, res) => {
     const err = req.formErrorFields?.title ? req.formErrorFields.title : '';
     const value = req.body?.title ? req.body.title : '';
 
     const { slug } = req.params;
     const todos = await Todo.query()
         .join('categories', 'todos.category_id', '=', 'categories.id')
-        .where('categories.link', slug);
+        .where('categories.link', `/${slug}`);
     const categories = await Category.query();
 
     // Get flash message if available
     const flash = req.flash || "";
 
-    res.render("home", {
+    res.render("todos", {
         todos,
         categories,
         err,

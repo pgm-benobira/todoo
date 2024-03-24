@@ -5,14 +5,8 @@ import Category from '../models/category.js';
 
 const categoryId = async (req) => {
     const categoryLink = req.headers.referer.split('/').pop();
-    if (categoryLink == '') {
-        const category = await Category.query()
-        .where('link', '/')
-        .first();
-        return category.id;
-    }
     const category = await Category.query()
-        .where('link', categoryLink)
+        .where('link', `/${categoryLink}`)
         .first();
         return category.id;
 };
@@ -20,7 +14,7 @@ const categoryId = async (req) => {
 export const createCategory = async (req, res) => {
     const newCategory = await Category.query().insert({
         name: req.body.name,
-        link: req.body.name.toLowerCase()
+        link: `/${req.body.name.toLowerCase()}`
     });
     console.log(newCategory);
     return res.redirect(req.headers.referer);
@@ -30,11 +24,11 @@ export const destroyCategory = async (req, res) => {
     const categoryLink = req.headers.referer.split('/').pop();
     const categoryUniqueId = await categoryId(req);
     const deletedTodos = await Todo.query().where('category_id', categoryUniqueId).delete();
-    const deletedCategory = await Category.query().where('link', categoryLink).first().delete();
+    const deletedCategory = await Category.query().where('link', `/${categoryLink}`).first().delete();
     if (!deletedCategory) {
         return res.send('Category not deleted');
     }
-    return res.redirect('/');
+    return res.redirect('/todos');
 }
 
 export const handleCategoryPost = async (req, res, next) => {

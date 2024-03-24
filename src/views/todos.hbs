@@ -1,0 +1,40 @@
+{{!-- Todos --}}
+{{> header this}}
+<div class="wrapper">
+    {{> aside this}}
+    <main>
+        <article class="main__inner">
+            {{#if err}}
+                <p class="error">{{err}}</p>
+            {{/if}}
+            {{#if flash.message}}
+                <p class="alert {{ flash.type}}">{{ flash.message}}</p>
+            {{/if}}
+            {{> add-task this }}
+            <section class="segment todos">
+                <h1>To do:</h1>
+                <ul class="tasks">
+                    {{#each todos}}
+                        {{#unless isDone}}
+                            {{> todo this}}
+                        {{/unless}}
+                    {{/each}}
+                </ul>
+            </section>
+            <section class="segment done-todos">
+                <h1>Things you've done!</h1>
+                <ul class="tasks">
+                    {{#each todos}}
+                        {{#if isDone}}
+                            {{> done-todo this}}
+                        {{/if}}
+                    {{/each}}
+                </ul>
+            </section>
+            <form class="delete-category__form" action="/" method="post">
+                <button name="action" value="deleteCategory">Delete this category and all its todos</button>
+            </form>
+        </article>
+    </main>
+</div>
+<script src="/scripts/helpers/themes.js"></script>

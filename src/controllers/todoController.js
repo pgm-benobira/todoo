@@ -6,14 +6,8 @@ import { validationResult } from 'express-validator';
 
 const categoryId = async (req) => {
     const categoryLink = req.headers.referer.split('/').pop();
-    if (categoryLink == '') {
-        const category = await Category.query()
-        .where('link', '/')
-        .first();
-        return category.id;
-    }
     const category = await Category.query()
-        .where('link', categoryLink)
+        .where('link', `/${categoryLink}`)
         .first();
         return category.id;
 };
