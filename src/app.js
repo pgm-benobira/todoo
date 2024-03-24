@@ -61,10 +61,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define the route for the home page
 app.get('/', pageController.homePage);
+
 // Define the route for the register page
 app.get('/register', authController.registerPage);
+// Define the route for the register form submission
+app.post('/register', AuthRegisterValidation, authController.postRegister, authController.registerPage);
 // Define the route for the login page
 app.get('/login', authController.loginPage);
+// Define the route for the login form submission
+app.post('/login', AuthLoginValidation, authController.postLogin, authController.loginPage);
+
 // Define the route for the todos page
 app.get('/todos', pageController.todosPage);
 // Define the route for a category page

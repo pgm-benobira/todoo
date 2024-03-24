@@ -318,9 +318,16 @@ main {
     color: rgb(237, 73, 73);
     font-size: 1rem;
     text-align: center;
+}
+
+.error--todos {
     padding-bottom: 2rem;
     position: relative;
     bottom: 1rem;
+}
+
+.error--auth {
+    padding-top: 1rem;
 }
 
 .success {

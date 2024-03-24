@@ -5,7 +5,7 @@
     <main>
         <article class="main__inner">
             {{#if err}}
-                <p class="error">{{err}}</p>
+                <p class="error error--todos">{{err}}</p>
             {{/if}}
             {{#if flash.message}}
                 <p class="alert {{ flash.type}}">{{ flash.message}}</p>

@@ -1,6 +1,11 @@
+/**
+ * An auth controller that handles login, register, and logout
+ */
+
+import { validationResult } from "express-validator";
 
 /**
- * This function will render the register page
+ * Register page
 **/
 export const registerPage = (req, res) => {
     // Create input fields
@@ -37,8 +42,23 @@ export const registerPage = (req, res) => {
     });
 };
 
+export const postRegister = async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        req.formErrorFields = {};
+        errors.array().forEach(error => {
+            req.formErrorFields[error.path] = error.msg;
+        });
+
+        // show errors in browser via the current page
+        return next();
+    }
+
+    res.send("Registering successful");
+};
+
 /**
- * This function will render the login page
+ * Login page
 **/
 export const loginPage = (req, res) => {
     // Create input fields
@@ -66,4 +86,20 @@ export const loginPage = (req, res) => {
         inputs,
         flash
     });
+};
+
+
+export const postLogin = async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        req.formErrorFields = {};
+        errors.array().forEach(error => {
+            req.formErrorFields[error.path] = error.msg;
+        });
+
+        // show errors in browser via the current page
+        return next();
+    }
+
+    res.send("Login successful");
 };

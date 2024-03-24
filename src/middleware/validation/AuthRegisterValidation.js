@@ -18,8 +18,5 @@ export default [
     .withMessage("Please enter a valid email address"),
   body("password")
     .notEmpty()
-    .withMessage("Password is required")
-    .bail()
-    .isStrongPassword()
-    .withMessage("Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one number, and one special character"),
+    .withMessage("Password is required"),
 ];
