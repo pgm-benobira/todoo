@@ -1,0 +1,23 @@
+{{!-- Register --}}
+{{> header this}}
+<div class="wrapper">
+    <main>
+        <article class="main__inner main__inner--centered">
+            <section class="segment auth">
+                <div class="auth__top">
+                    <h1>Register</h1>
+                    <a class="auth__link" href="/">Go back</a>
+                </div>
+                <form class="auth__form" action="register" method="post">
+                    {{#each inputs}}
+                        {{>form-input this}}
+                    {{/each}}
+                    <div class="auth__bottom">
+                        <button type="submit" class="cta shadow shadow--btn">Register</button>
+                        <a class="auth__link" href="/login"><span>Already have an account? You can login directly.</span></a>
+                    </div>
+                </form>
+            </section>
+        </article>
+    </main>
+</div>

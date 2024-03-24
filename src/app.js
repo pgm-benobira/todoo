@@ -5,20 +5,28 @@ import dotenv from "dotenv";
 dotenv.config();
 import bodyParser from "body-parser";
 import { create } from "express-handlebars";
+import HandlebarsHelpers from "./lib/HandlebarsHelpers.js";
 
 import TodoValidation from "./middleware/validation/TodoValidation.js";
 
-import { homePage, todosPage, categoryTodosPage } from "./controllers/pageController.js";
+import { homePage, registerPage, loginPage, todosPage, categoryTodosPage } from "./controllers/pageController.js";
 import { handleTodoPost } from "./controllers/todoController.js";
 import { handleCategoryPost } from "./controllers/categoryController.js";
 import { getTodo, getTodos, createTodo, updateTodo, deleteTodo } from "./controllers/api/todosController.js";
 import { getCategory, getCategories } from "./controllers/api/categoriesController.js";
+
+/**
+ * ------------------------------
+ *       CONFIGURATION
+ * ------------------------------
+ */
 
 // Create an Express application.
 const app = express();
 
 // Create `ExpressHandlebars` instance with a default layout.
 const hbs = create({
+    helpers: HandlebarsHelpers,
     extname: "hbs",
 });
 
@@ -36,8 +44,18 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+/**
+ * ------------------------------
+ *            ROUTING
+ * ------------------------------
+ */
+
 // Define the route for the home page
 app.get('/', homePage);
+// Define the route for the register page
+app.get('/register', registerPage);
+// Define the route for the login page
+app.get('/login', loginPage);
 // Define the route for the todos page
 app.get('/todos', todosPage);
 // Define the route for a category page
@@ -56,7 +74,11 @@ app.delete('/api/todos/:id', deleteTodo);
 app.get('/api/categories/:id', getCategory);
 app.get('/api/categories', getCategories);
 
-// Start the server
+/**
+ * ------------------------------
+ *        START SERVER
+ * ------------------------------
+ */
 app.listen(process.env.PORT, () => {
     console.log(`Example app listening on http://localhost:${process.env.PORT}`);
 });

@@ -1,0 +1,10 @@
+<div class="input-container">
+  {{#eq type "textarea"}}
+    <textarea name="{{name}}">{{value}}</textarea>
+  {{else}}
+      <input class="add-task__bar" type="{{type}}" name="{{name}}" placeholder="{{placeholder}}" value="{{value}}">
+  {{/eq}}
+  {{#if err}}
+    <div class="error">{{err}}</div>
+  {{/if}}
+</div>

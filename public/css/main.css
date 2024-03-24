@@ -306,7 +306,7 @@ main {
     padding: 4rem;
 }
 
-.main__inner--home {
+.main__inner--centered {
     min-height: calc(100vh - 7rem);
     display: flex;
     flex-direction: column;
@@ -348,6 +348,7 @@ main {
     display: flex;
     width: 100%;
     max-width: 70rem;
+    outline: 1px solid var(--main);
 }
 
 .welcome__left {
@@ -369,12 +370,50 @@ main {
     gap: 2rem;
 }
 
-.welcome__right a {
+.cta {
     font-size: 1.2rem;
     padding: 1.4rem 3.4rem;
     border-radius: 14px;
     color: var(--main);
     outline: 1px solid var(--main);
+}
+
+/* -------------------------------- Log in / Register -------------------------------- */
+
+.auth {
+    max-width: 40rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+
+.auth__top h1 {
+    padding-bottom: 0;
+}
+
+.input-container {
+    padding-bottom: 2rem;
+}
+
+.auth__bottom .auth__link {
+    padding-top: 2rem;
+    padding-bottom: 0.6rem;
+}
+
+.auth__link {
+    color: hsla(209, 20%, 21%, 0.5);
+    display: block;
+}
+
+.auth__link:hover {
+    color: var(--main);
 }
 
 /* ------------------------------------ Add task ------------------------------------- */

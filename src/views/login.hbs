@@ -1,0 +1,23 @@
+{{!-- Login --}}
+{{> header this}}
+<div class="wrapper">
+    <main>
+        <article class="main__inner main__inner--centered">
+            <section class="segment auth">
+                <div class="auth__top">
+                    <h1>Login</h1>
+                    <a class="auth__link" href="/">Go back</a>
+                </div>
+                <form class="auth__form" action="login" method="post">
+                    {{#each inputs}}
+                        {{>form-input this}}
+                    {{/each}}
+                    <div class="auth__bottom">
+                        <button type="submit" class="cta shadow shadow--btn">Login</button>
+                        <a class="auth__link" href="/register"><span>Don't have an account yet? Register here!</span></a>
+                    </div>
+                </form>
+            </section>
+        </article>
+    </main>
+</div>
