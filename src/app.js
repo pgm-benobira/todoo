@@ -1,4 +1,8 @@
-// Import statements
+/**
+ * ------------------------------
+ *            IMPORTS
+ * ------------------------------
+ */
 import express from "express";
 import path from "path";
 import dotenv from "dotenv";
@@ -7,13 +11,18 @@ import bodyParser from "body-parser";
 import { create } from "express-handlebars";
 import HandlebarsHelpers from "./lib/HandlebarsHelpers.js";
 
+// Middleware
 import TodoValidation from "./middleware/validation/TodoValidation.js";
+import AuthRegisterValidation from "./middleware/validation/AuthRegisterValidation.js";
+import AuthLoginValidation from "./middleware/validation/AuthLoginValidation.js";
 
-import { homePage, registerPage, loginPage, todosPage, categoryTodosPage } from "./controllers/pageController.js";
+// Controllers
+import * as pageController from "./controllers/pageController.js";
+import * as authController from "./controllers/authController.js";
 import { handleTodoPost } from "./controllers/todoController.js";
 import { handleCategoryPost } from "./controllers/categoryController.js";
-import { getTodo, getTodos, createTodo, updateTodo, deleteTodo } from "./controllers/api/todosController.js";
-import { getCategory, getCategories } from "./controllers/api/categoriesController.js";
+import * as apiTodosController from "./controllers/api/todosController.js";
+import * as apiCategoriesController from "./controllers/api/categoriesController.js";
 
 /**
  * ------------------------------
@@ -51,28 +60,28 @@ app.use(bodyParser.urlencoded({ extended: true }));
  */
 
 // Define the route for the home page
-app.get('/', homePage);
+app.get('/', pageController.homePage);
 // Define the route for the register page
-app.get('/register', registerPage);
+app.get('/register', authController.registerPage);
 // Define the route for the login page
-app.get('/login', loginPage);
+app.get('/login', authController.loginPage);
 // Define the route for the todos page
-app.get('/todos', todosPage);
+app.get('/todos', pageController.todosPage);
 // Define the route for a category page
-app.get('/todos/:slug', categoryTodosPage);
+app.get('/todos/:slug', pageController.categoryTodosPage);
 // Define the route for the todo and category form submission
-app.post('/', handleCategoryPost, TodoValidation, handleTodoPost, todosPage);
+app.post('/', handleCategoryPost, TodoValidation, handleTodoPost, pageController.todosPage);
 
 // Define the routes for the todos API
-app.get('/api/todos/:id', getTodo);
-app.get('/api/todos', getTodos);
-app.post('/api/todos', createTodo);
-app.put('/api/todos', updateTodo);
-app.delete('/api/todos/:id', deleteTodo);
+app.get('/api/todos/:id', apiTodosController.getTodo);
+app.get('/api/todos', apiTodosController.getTodos);
+app.post('/api/todos', apiTodosController.createTodo);
+app.put('/api/todos', apiTodosController.updateTodo);
+app.delete('/api/todos/:id', apiTodosController.deleteTodo);
 
 // Define the routes for the categories API
-app.get('/api/categories/:id', getCategory);
-app.get('/api/categories', getCategories);
+app.get('/api/categories/:id', apiCategoriesController.getCategory);
+app.get('/api/categories', apiCategoriesController.getCategories);
 
 /**
  * ------------------------------
