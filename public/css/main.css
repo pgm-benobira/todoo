@@ -417,6 +417,8 @@ main {
 .auth__link {
     color: hsla(209, 20%, 21%, 0.5);
     display: block;
+    text-align: center;
+    font-size: 1rem;
 }
 
 .auth__link:hover {

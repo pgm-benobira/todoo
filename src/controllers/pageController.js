@@ -50,7 +50,7 @@ export const categoryTodosPage = async (req, res) => {
     // Get flash message if available
     const flash = req.flash || "";
 
-    res.render("todos", {
+    res.render("categoryTodos", {
         todos,
         categories,
         err,

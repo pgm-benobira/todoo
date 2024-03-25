@@ -13,10 +13,12 @@ function setActiveCategory() {
 
     categories.forEach(category => {
         const categorySlug = category.getAttribute('data-slug');
-
         if (categorySlug === '/' + slug) {
             category.classList.add('shadow--active');
-        } else {
+        } else if (categorySlug === '/' && slug === 'todos') {
+            category.classList.add('shadow--active');
+        }
+        else {
             category.classList.remove('shadow--active');
         }
     });

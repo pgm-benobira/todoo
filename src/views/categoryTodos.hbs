@@ -10,8 +10,9 @@
             {{#if flash.message}}
                 <p class="alert {{ flash.type}}">{{ flash.message}}</p>
             {{/if}}
+            {{> add-task this }}
             <section class="segment todos">
-                <h1>All To-Dos:</h1>
+                <h1>To-Do:</h1>
                 <ul class="tasks">
                     {{#each todos}}
                         {{#unless isDone}}
@@ -30,6 +31,9 @@
                     {{/each}}
                 </ul>
             </section>
+            <form class="delete-category__form" action="/" method="post">
+                <button name="action" value="deleteCategory">Delete this category and all its todos</button>
+            </form>
         </article>
     </main>
 </div>

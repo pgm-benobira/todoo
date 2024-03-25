@@ -54,7 +54,7 @@ export const postRegister = async (req, res, next) => {
         return next();
     }
 
-    res.send("Registering successful");
+    res.send("No mistakes in the form continue to register user");
 };
 
 /**
@@ -101,5 +101,10 @@ export const postLogin = async (req, res, next) => {
         return next();
     }
 
-    res.send("Login successful");
+    res.send("No mistakes in the form continue to login user");
 };
+
+/**
+ * Logout
+ */
+export const logout = async (req, res) => {};
