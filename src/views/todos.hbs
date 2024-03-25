@@ -8,7 +8,7 @@
                 <p class="error error--todos">{{err}}</p>
             {{/if}}
             {{#if flash.message}}
-                <p class="alert {{ flash.type}}">{{ flash.message}}</p>
+                <p class="alert error--todos {{ flash.type}}">{{ flash.message}}</p>
             {{/if}}
             <section class="segment todos">
                 <h1>All To-Dos:</h1>

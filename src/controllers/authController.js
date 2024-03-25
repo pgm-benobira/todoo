@@ -3,6 +3,7 @@
  */
 
 import { validationResult } from "express-validator";
+import User from "../models/user.js";
 
 /**
  * Register page
@@ -50,11 +51,25 @@ export const postRegister = async (req, res, next) => {
             req.formErrorFields[error.path] = error.msg;
         });
 
-        // show errors in browser via the current page
+        // Show errors in browser via the current page
         return next();
     }
 
-    res.send("No mistakes in the form continue to register user");
+    // Create a new user
+    const user = User.query().insert({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+    });
+
+    // Set flash message
+    req.flash = {
+        type: "success",
+        message: "User created successfully",
+    };
+
+    // Redirect to login page
+    res.redirect("/login");
 };
 
 /**
@@ -97,7 +112,7 @@ export const postLogin = async (req, res, next) => {
             req.formErrorFields[error.path] = error.msg;
         });
 
-        // show errors in browser via the current page
+        // Show errors in browser via the current page
         return next();
     }
 

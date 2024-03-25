@@ -12,15 +12,34 @@ const categoryId = async (req) => {
         return category.id;
 };
 
+// ! Work in progress ! --
+// const renderTodosPage = async (req, res, flash, slug) => {
+//     const value = req.body?.title ? req.body.title : '';
+
+//     const todos = await Todo.query()
+//         .join('categories', 'todos.category_id', '=', 'categories.id')
+//         .where('categories.link', `/${slug}`);
+//     const categories = await Category.query();
+
+//     res.render("categoryTodos", {
+//         todos,
+//         categories,
+//         value,
+//         flash
+//     });
+// };
+
 export const create = async (req, res) => {
+    const categoryLink = req.headers.referer.split('/').pop();
     const inputTitle = req.body.title;
     // Check if the todo already exists with the matching category
     const existingTodo = await Todo.query().where('title', inputTitle).where('category_id', await categoryId(req)).first();
     if (existingTodo) {
-        req.flash = {
+        const flash = req.flash = {
             message: 'Task already exists in this category',
             type: 'error'
         };
+        // return renderTodosPage(req, res, flash, categoryLink); -- ! Work in progress ! --
         return res.redirect(req.headers.referer);
     }
     const newTodo = await Todo.query().insert({

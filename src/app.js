@@ -4,11 +4,11 @@
  * ------------------------------
  */
 import express from "express";
+import { create } from "express-handlebars";
 import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
 import bodyParser from "body-parser";
-import { create } from "express-handlebars";
 import HandlebarsHelpers from "./lib/HandlebarsHelpers.js";
 
 // Middleware
@@ -75,8 +75,10 @@ app.post('/login', AuthLoginValidation, authController.postLogin, authController
 app.get('/todos', pageController.todosPage);
 // Define the route for a category page
 app.get('/todos/:slug', pageController.categoryTodosPage);
-// Define the route for the todo and category form submission
-app.post('/', handleCategoryPost, TodoValidation, handleTodoPost, pageController.todosPage);
+// Define the route for the todo form submission
+app.post('/todos', TodoValidation, handleTodoPost, pageController.todosPage);
+// Define the route for the category form submission
+app.post('/categories', handleCategoryPost, pageController.todosPage);
 
 // Define the routes for the todos API
 app.get('/api/todos/:id', apiTodosController.getTodo);
