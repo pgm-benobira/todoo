@@ -173,6 +173,7 @@ header {
     display: flex;
     gap: 1.6rem;
     justify-content: flex-end;
+    align-items: center;
 }
 
 .nav__btn {

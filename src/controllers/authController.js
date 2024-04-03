@@ -2,8 +2,12 @@
  * An auth controller that handles login, register, and logout
  */
 
+import dotenv from "dotenv";
+dotenv.config();
 import { validationResult } from "express-validator";
 import User from "../models/user.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 /**
  * Register page
@@ -55,18 +59,25 @@ export const postRegister = async (req, res, next) => {
         return next();
     }
 
+    // Check if the user already exists
+    const userExists = await User.query().findOne({ email: req.body.email });
+    if (userExists) {
+        req.flash = {
+            type: "error",
+            message: "An user with that email already exists",
+        }
+        return next();
+    }
+
+    // Hash the password
+    const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+
     // Create a new user
-    const user = User.query().insert({
+    const user = await User.query().insert({
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password,
+        password: hashedPassword,
     });
-
-    // Set flash message
-    req.flash = {
-        type: "success",
-        message: "User created successfully",
-    };
 
     // Redirect to login page
     res.redirect("/login");
@@ -116,7 +127,33 @@ export const postLogin = async (req, res, next) => {
         return next();
     }
 
-    res.send("No mistakes in the form continue to login user");
+    // Check if the user exists
+    const user = await User.query().findOne({ email: req.body.email });
+    if (!user) {
+        req.flash = {
+            type: "error",
+            message: "User not found",
+        }
+        return next();
+    }
+
+    // Check if the password is correct
+    const passwordMatch = bcrypt.compareSync(req.body.password, user.password);
+    if (!passwordMatch) {
+        req.flash = {
+            type: "error",
+            message: "Password is incorrect",
+        }
+        return next();
+    }
+
+    // Token
+    const token = jwt.sign({id: user.id, email: user.email }, process.env.TOKEN_SALT, {expiresIn: "1h",});
+
+    res.cookie("user", token, {httpOnly: true});
+
+    // Redirect to the todos page
+    res.redirect("/todos");
 };
 
 /**

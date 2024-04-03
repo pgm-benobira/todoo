@@ -4,6 +4,10 @@
 
 import Todo from '../models/todo.js';
 import Category from '../models/category.js';
+import User from '../models/user.js';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
 /**
  * This function will render the home page
@@ -24,6 +28,23 @@ export const todosPage = async (req, res) => {
 
     // Get flash message if available
     const flash = req.flash || "";
+
+    const token = req.cookies.user;
+    if (token) {
+        const userData = jwt.verify(token, process.env.TOKEN_SALT);
+        if (userData) {
+            const user = await User.query().findOne({ id: userData.id });
+            res.render("todos", {
+                todos,
+                categories,
+                err,
+                value,
+                flash,
+                user
+            });
+            return;
+        }
+    }
 
     res.render("todos", {
         todos,

@@ -9,6 +9,7 @@ import path from "path";
 import dotenv from "dotenv";
 dotenv.config();
 import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 import HandlebarsHelpers from "./lib/HandlebarsHelpers.js";
 
 // Middleware
@@ -52,6 +53,9 @@ app.use(express.static('public'));
 // Import the `body-parser` library
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Import the `cookie-parser` library
+app.use(cookieParser());
 
 /**
  * ------------------------------

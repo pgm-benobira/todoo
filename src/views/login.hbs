@@ -3,6 +3,9 @@
 <div class="wrapper">
     <main>
         <article class="main__inner main__inner--centered">
+            {{#if flash.message}}
+                <p class="alert error--todos {{ flash.type}}">{{ flash.message}}</p>
+            {{/if}}
             <section class="segment auth">
                 <div class="auth__top">
                     <h1>Login</h1>
