@@ -43,8 +43,6 @@
 - Middleware for validating POST/PUT/DELETE requests.
 - Authentication & Authorization using JSON Web Tokens.
 
-### 1.5 Extras
-- Implement additional features for excelling, such as pagination, endless scrolling, search, filtering, sorting, todo list grouping, sharing via QR Code, exporting to PDF, settings customization, and file upload.
 
 ## 2. Technical Requirements
 
@@ -58,3 +56,7 @@
 - bcrypt for password encoding and decoding.
 - body-parser for parsing body to/from JSON.
 - cookie-parser for parsing cookies to/from the client.
+
+# Author
+
+- Bénoît Biraguma Ihimabzwe
