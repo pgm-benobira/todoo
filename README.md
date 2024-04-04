@@ -4,6 +4,13 @@
 - make.env
 - start app 'npm run start'
 
+## In the application
+
+### To log in:
+- Email: beno2001@hotmail.com
+- Password: 123
+
+
 # Application Overview
 
 ## 1. Functionality
