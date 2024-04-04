@@ -17,6 +17,7 @@ import TodoValidation from "./middleware/validation/TodoValidation.js";
 import CategoryValidation from "./middleware/validation/CategoryValidation.js";
 import AuthRegisterValidation from "./middleware/validation/AuthRegisterValidation.js";
 import AuthLoginValidation from "./middleware/validation/AuthLoginValidation.js";
+import jwtAuth from "./middleware/jwtAuth.js";
 
 // Controllers
 import * as pageController from "./controllers/pageController.js";
@@ -77,9 +78,11 @@ app.get('/login', authController.loginPage);
 app.post('/login', AuthLoginValidation, authController.postLogin, authController.loginPage);
 
 // Define the route for the todos page
-app.get('/todos', pageController.todosPage);
+app.get('/todos', jwtAuth, pageController.todosPage);
 // Define the route for a category page
-app.get('/todos/:slug', pageController.categoryTodosPage);
+app.get('/todos/:slug', jwtAuth, pageController.categoryTodosPage);
+// Define the route for non authenticated users
+app.get('/unauthorized', pageController.unauthorizedPage);
 // Define the route for the todo form submission
 app.post('/todos', TodoValidation, handleTodoPost, pageController.todosPage);
 // Define the route for the category form submission

@@ -4,8 +4,6 @@
 
 import Todo from '../models/todo.js';
 import Category from '../models/category.js';
-import User from '../models/user.js';
-import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -31,31 +29,19 @@ export const todosPage = async (req, res) => {
     // Get flash message if available
     const flash = req.flash || "";
 
-    const token = req.cookies.user;
-    if (token) {
-        const userData = jwt.verify(token, process.env.TOKEN_SALT);
-        if (userData) {
-            const user = await User.query().findOne({ id: userData.id });
-            res.render("todos", {
-                todos,
-                categories,
-                err,
-                errCategory,
-                value,
-                valueCategory,
-                flash,
-                user
-            });
-            return;
-        }
-    }
+    // Get the username of the user
+    const user = req.user;
+    const username = user.username;
 
     res.render("todos", {
         todos,
         categories,
         err,
+        errCategory,
         value,
-        flash
+        valueCategory,
+        flash,
+        username
     });
 }
 
@@ -75,28 +61,23 @@ export const categoryTodosPage = async (req, res) => {
     // Get flash message if available
     const flash = req.flash || "";
 
-    const token = req.cookies.user;
-    if (token) {
-        const userData = jwt.verify(token, process.env.TOKEN_SALT);
-        if (userData) {
-            const user = await User.query().findOne({ id: userData.id });
-            res.render("categoryTodos", {
-                todos,
-                categories,
-                err,
-                value,
-                flash,
-                user
-            });
-            return;
-        }
-    }
+    // Get the username of the user
+    const user = req.user;
+    const username = user.username;
 
     res.render("categoryTodos", {
         todos,
         categories,
         err,
         value,
-        flash
+        flash,
+        username
     });
+}
+
+/**
+ * This function will render the unauthorized page
+**/
+export const unauthorizedPage = (req, res) => {
+    res.render("unauthorized");
 }
