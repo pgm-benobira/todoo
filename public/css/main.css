@@ -183,6 +183,10 @@ header {
     border-radius: 10px;
 }
 
+.nav__btn img {
+    width: 100%;
+}
+
 .nav__btn:hover img {
     opacity: 70%;
 }

@@ -81,3 +81,10 @@ export const categoryTodosPage = async (req, res) => {
 export const unauthorizedPage = (req, res) => {
     res.render("unauthorized");
 }
+
+/**
+ * This function will handle unknown routes
+ **/
+export const notFoundPage = (req, res) => {
+    res.render("unknown");
+}

@@ -76,6 +76,8 @@ app.post('/register', AuthRegisterValidation, authController.postRegister, authC
 app.get('/login', authController.loginPage);
 // Define the route for the login form submission
 app.post('/login', AuthLoginValidation, authController.postLogin, authController.loginPage);
+// Define the route for the logout form submission
+app.post('/logout', authController.logout);
 
 // Define the route for the todos page
 app.get('/todos', jwtAuth, pageController.todosPage);
@@ -98,6 +100,9 @@ app.delete('/api/todos/:id', apiTodosController.deleteTodo);
 // Define the routes for the categories API
 app.get('/api/categories/:id', apiCategoriesController.getCategory);
 app.get('/api/categories', apiCategoriesController.getCategories);
+
+// Define routes for unknown URLs
+app.get('*', pageController.notFoundPage);
 
 /**
  * ------------------------------

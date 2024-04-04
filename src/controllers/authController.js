@@ -159,4 +159,7 @@ export const postLogin = async (req, res, next) => {
 /**
  * Logout
  */
-export const logout = async (req, res) => {};
+export const logout = async (req, res) => {
+    res.clearCookie("user");
+    res.redirect("/login");
+};
