@@ -42,14 +42,13 @@ export const createTodo = async (req, res, next) => {
  *
  */
 export const updateTodo = async (req, res, next) => {
-    const { id, title, isDone, isDeleted } = req.body;
+    const { id, title, isDone } = req.body;
     if (!id) {
         res.status(400).json({ message: "ID is required" });
     }
     const todo = await Todo.query().patchAndFetchById(id, {
         title,
-        isDone,
-        isDeleted
+        isDone
     });
     if (!todo) {
         res.status(404).json({ message: "Todo not found" });
