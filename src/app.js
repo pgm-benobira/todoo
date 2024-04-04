@@ -83,24 +83,24 @@ app.post('/logout', authController.logout);
 app.get('/todos', jwtAuth, pageController.todosPage);
 // Define the route for a category page
 app.get('/todos/:slug', jwtAuth, pageController.categoryTodosPage);
-// Define the route for non authenticated users
-app.get('/unauthorized', pageController.unauthorizedPage);
 // Define the route for the todo form submission
-app.post('/todos', TodoValidation, handleTodoPost, pageController.todosPage);
+app.post('/todos', jwtAuth, TodoValidation, handleTodoPost, pageController.todosPage);
 // Define the route for the category form submission
-app.post('/categories', CategoryValidation, handleCategoryPost, pageController.todosPage);
+app.post('/categories', jwtAuth, CategoryValidation, handleCategoryPost, pageController.todosPage);
 
 // Define the routes for the todos API
-app.get('/api/todos/:id', apiTodosController.getTodo);
-app.get('/api/todos', apiTodosController.getTodos);
-app.post('/api/todos', apiTodosController.createTodo);
-app.put('/api/todos', apiTodosController.updateTodo);
-app.delete('/api/todos/:id', apiTodosController.deleteTodo);
+app.get('/api/todos/:id', jwtAuth, apiTodosController.getTodo);
+app.get('/api/todos', jwtAuth, apiTodosController.getTodos);
+app.post('/api/todos', jwtAuth, apiTodosController.createTodo);
+app.put('/api/todos', jwtAuth, apiTodosController.updateTodo);
+app.delete('/api/todos/:id', jwtAuth, apiTodosController.deleteTodo);
 
 // Define the routes for the categories API
 app.get('/api/categories/:id', apiCategoriesController.getCategory);
 app.get('/api/categories', apiCategoriesController.getCategories);
 
+// Define the route for non authenticated users
+app.get('/unauthorized', pageController.unauthorizedPage);
 // Define routes for unknown URLs
 app.get('*', pageController.notFoundPage);
 
