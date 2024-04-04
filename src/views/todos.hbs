@@ -7,6 +7,9 @@
             {{#if err}}
                 <p class="error error--todos">{{err}}</p>
             {{/if}}
+            {{#if errCategory}}
+                <p class="error error--todos">{{errCategory}}</p>
+            {{/if}}
             {{#if flash.message}}
                 <p class="alert error--todos {{ flash.type}}">{{ flash.message}}</p>
             {{/if}}

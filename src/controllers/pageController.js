@@ -21,7 +21,9 @@ export const homePage = (req, res) => {
 **/
 export const todosPage = async (req, res) => {
     const err = req.formErrorFields?.title ? req.formErrorFields.title : '';
+    const errCategory = req.formErrorFields?.name ? req.formErrorFields.name : '';
     const value = req.body?.title ? req.body.title : '';
+    const valueCategory = req.body?.name ? req.body.name : '';
 
     const todos = await Todo.query();
     const categories = await Category.query();
@@ -38,7 +40,9 @@ export const todosPage = async (req, res) => {
                 todos,
                 categories,
                 err,
+                errCategory,
                 value,
+                valueCategory,
                 flash,
                 user
             });
@@ -70,6 +74,23 @@ export const categoryTodosPage = async (req, res) => {
 
     // Get flash message if available
     const flash = req.flash || "";
+
+    const token = req.cookies.user;
+    if (token) {
+        const userData = jwt.verify(token, process.env.TOKEN_SALT);
+        if (userData) {
+            const user = await User.query().findOne({ id: userData.id });
+            res.render("categoryTodos", {
+                todos,
+                categories,
+                err,
+                value,
+                flash,
+                user
+            });
+            return;
+        }
+    }
 
     res.render("categoryTodos", {
         todos,

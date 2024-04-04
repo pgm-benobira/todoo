@@ -1,5 +1,6 @@
 import Todo from '../models/todo.js';
 import Category from '../models/category.js';
+import { validationResult } from 'express-validator';
 
 // For the categories
 
@@ -32,6 +33,17 @@ export const destroyCategory = async (req, res) => {
 }
 
 export const handleCategoryPost = async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        req.formErrorFields = {};
+        errors.array().forEach(error => {
+            req.formErrorFields[error.path] = error.msg;
+        });
+
+        // show errors in browser via the current page
+        return next();
+    }
+
     const action = req.body.action;
     if (action == 'createCategory') {
         createCategory(req, res);

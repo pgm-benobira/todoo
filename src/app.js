@@ -14,6 +14,7 @@ import HandlebarsHelpers from "./lib/HandlebarsHelpers.js";
 
 // Middleware
 import TodoValidation from "./middleware/validation/TodoValidation.js";
+import CategoryValidation from "./middleware/validation/CategoryValidation.js";
 import AuthRegisterValidation from "./middleware/validation/AuthRegisterValidation.js";
 import AuthLoginValidation from "./middleware/validation/AuthLoginValidation.js";
 
@@ -82,7 +83,7 @@ app.get('/todos/:slug', pageController.categoryTodosPage);
 // Define the route for the todo form submission
 app.post('/todos', TodoValidation, handleTodoPost, pageController.todosPage);
 // Define the route for the category form submission
-app.post('/categories', handleCategoryPost, pageController.todosPage);
+app.post('/categories', CategoryValidation, handleCategoryPost, pageController.todosPage);
 
 // Define the routes for the todos API
 app.get('/api/todos/:id', apiTodosController.getTodo);
